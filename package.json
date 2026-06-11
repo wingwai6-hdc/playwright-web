@@ -1,0 +1,13 @@
+{
+  "name": "playwright-web",
+  "version": "1.0.0",
+  "description": "Playwright with TypeScript Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.3"
+  }
+}

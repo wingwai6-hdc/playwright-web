@@ -1,0 +1,29 @@
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Build artifacts
+/dist/
+/build/
+/out/
+
+# IDE and editor files
+/.idea/
+/.vscode/
+*.iml
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
