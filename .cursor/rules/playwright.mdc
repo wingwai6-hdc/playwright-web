@@ -1,0 +1,36 @@
+---
+description: Playwright E2E testing conventions for playwright-web
+globs: tests/**/*.ts
+alwaysApply: true
+---
+
+# Playwright rules
+
+## Locators
+- Use getByRole, getByTestId, or getByLabel
+- Never use CSS selectors, XPath, or page.locator() with class strings
+- Check the live accessibility tree via MCP before choosing a locator
+
+## Structure
+- 1 file per feature or user flow
+- Wrap related tests in describe() blocks
+- Keep each test under 30 lines
+- Name files as feature-name.spec.ts
+
+## Timing
+- Never use page.waitForTimeout() or fixed delays
+- Use waitForLoadState('networkidle') for page transitions
+- Use element.waitFor({ state: 'visible' }) for element state
+
+## Test data
+- All credentials and test data via fixtures or env vars
+- Tests must pass in isolation, no dependency on prior tests
+- Use storageState for auth , never log in through the UI per test
+
+## Assertions
+- Assert the final outcome, not intermediate DOM states
+- Use toBeVisible, toHaveText, toHaveURL
+
+## Output
+- Return diffs, not full files
+- Add a 1-line comment at the top explaining what the test covers
