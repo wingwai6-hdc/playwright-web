@@ -1,0 +1,63 @@
+asyncapi: 3.0.0
+info:
+  title: Kafka Mock
+  version: 1.0.0
+  description: AsyncAPI specification for a Kafka event bus
+servers:
+  mock:
+    host: localhost:9092
+    protocol: kafka
+
+channels:
+  document.send-command:
+    description: Sending documents to customers
+    messages:
+      documentCommand:
+        $ref: '#/components/messages/documentCommand'
+  document.send-event:
+    description: Events when sending documents
+    messages:
+      documentEvent:
+        $ref: '#/components/messages/documentEvent'
+
+operations:
+  sendDocument:
+    action: send
+    channel:
+      $ref: '#/channels/document.send-command'
+  processDocumentCommand:
+    action: receive
+    channel:
+      $ref: '#/channels/document.send-command'
+  documentSendEvent:
+    action: send
+    channel:
+      $ref: '#/channels/document.send-event'
+
+components:
+  messages:
+    documentCommand:
+      payload:
+        type: object
+        properties:
+          documentId:
+            type: string
+          recipient:
+            type: string
+          document:
+            type: object
+            properties:
+              mediaType:
+                type: string
+              fileName:
+                type: string
+              content:
+                type: string
+    documentEvent:
+      payload:
+        type: object
+        properties:
+          documentId:
+            type: string
+          status:
+            type: string

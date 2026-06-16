@@ -8,6 +8,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
-    "@types/node": "^25.9.3"
+    "kafkajs": "^2.2.4",
+    "@types/node": "^25.9.3",
+    "node-fetch": "^3.3.2"
   }
 }
