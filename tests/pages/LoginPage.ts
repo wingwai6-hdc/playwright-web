@@ -17,7 +17,7 @@ export class LoginPage extends BasePage {
         return this.page.getByLabel('Password');
     }
     get submitButton(): Locator {
-        return this.page.getByRole('button', { name: 'Sign in' });
+        return this.page.getByRole('button', { name: 'Sign in', exact: true });
     }
     get errorMessage(): Locator {
         return this.page.getByRole('alert');
