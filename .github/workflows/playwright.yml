@@ -15,6 +15,12 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm ci
+    - name: Start Mokapi
+      run: |
+          docker run -d --rm --name mokapi -p 80:80 -p 8080:8080 -v ${{ github.workspace }}/mocks:/mocks mokapi/mokapi:latest /mocks
+          sleep 5  # Ensure Mokapi is running
+    - name: Start backend server
+      run: nohup node backend/index.js > backend.log 2>&1 &
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
@@ -28,3 +34,8 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+    - name: Stop Mokapi
+      run: docker stop mokapi
+    - name: Stop backend server
+      run: |        
+          pkill -f "node backend/index.js" || true
