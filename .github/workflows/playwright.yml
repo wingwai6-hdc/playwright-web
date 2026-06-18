@@ -24,9 +24,6 @@ jobs:
           curl -v http://localhost:8080/health
     - name: Start backend server
       run: node backend/index.js
-    - name: Check backend logs
-      run: |    
-          cat backend.log
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
