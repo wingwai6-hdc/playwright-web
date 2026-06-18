@@ -19,6 +19,7 @@ export const test = base.extend<MyFixtures>({
     validCredentials: async ({}, use, testInfo) => {
         const email = process.env.TEST_USER_EMAIL;
         const password = process.env.TEST_USER_PASSWORD;
+        console.log('Valid credentials:', email, password);
 
         if (!email || !password) {
             testInfo.skip(true, 'Set TEST_USER_EMAIL and TEST_USER_PASSWORD to run login tests');

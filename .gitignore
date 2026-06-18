@@ -7,7 +7,7 @@ node_modules/
 /playwright/.auth/
 
 # Build artifacts
-/dist/
+/dist/1
 /build/
 /out/
 
