@@ -23,7 +23,7 @@ jobs:
       run: |    
           curl -v http://localhost:8080/health
     - name: Start backend server
-      run: ode backend/index.js
+      run: node backend/index.js
     - name: Check backend logs
       run: |    
           cat backend.log
