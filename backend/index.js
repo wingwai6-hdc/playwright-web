@@ -11,6 +11,7 @@ const producer = kafka.producer();
 async function start() {
     await consumer.connect();
     await producer.connect();
+    console.log('Backend service started');
 
     await consumer.subscribe({ topic: 'document.send-command', fromBeginning: true });
 

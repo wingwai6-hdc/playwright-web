@@ -19,8 +19,14 @@ jobs:
       run: |
           docker run -d --rm --name mokapi -p 80:80 -p 8080:8080 -v ${{ github.workspace }}/mocks:/mocks mokapi/mokapi:latest /mocks
           sleep 5  # Ensure Mokapi is running
+    - name: Check Mokapi health
+      run: |    
+          curl -v http://localhost:8080/health
     - name: Start backend server
       run: nohup node backend/index.js > backend.log 2>&1 &
+    - name: Check backend logs
+      run: |    
+          cat backend.log
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
