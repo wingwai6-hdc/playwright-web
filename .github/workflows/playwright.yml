@@ -25,9 +25,6 @@ jobs:
     - name: Start backend server
       run: nohup node backend/index.js > backend.log 2>&1 &
           echo $! > backend.pid
-    - name: Check backend logs
-      run: |    
-          cat backend.log
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
@@ -43,6 +40,9 @@ jobs:
         retention-days: 30
     - name: Stop Mokapi
       run: docker stop mokapi
+    - name: Check backend logs
+      run: |
+          cat backend.log
     - name: Stop backend server
       run: |
         kill $(cat backend.pid) || true
