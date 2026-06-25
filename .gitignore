@@ -6,6 +6,9 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 
+# Postman
+/pm-results/
+
 # Build artifacts
 /dist/1
 /build/

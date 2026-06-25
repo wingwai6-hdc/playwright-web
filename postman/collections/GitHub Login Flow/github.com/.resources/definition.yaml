@@ -1,0 +1,3 @@
+$kind: collection
+name: github.com
+description: Requests to github.com captured during the login flow

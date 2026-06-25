@@ -1,0 +1,7 @@
+$kind: http-request
+name: GET /login
+url: 'https://github.com/login'
+method: GET
+body:
+  type: text
+  content: ''

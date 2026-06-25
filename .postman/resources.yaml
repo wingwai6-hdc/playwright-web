@@ -1,0 +1,7 @@
+# Use this workspace to collaborate
+workspace:
+  id: 0d805e2c-ca7e-4f42-8da7-0421ea23c0ee
+
+localResources:
+  specs:
+    - ../mocks/asyncapi-kafka.yaml

@@ -1,4 +1,7 @@
-import { test, expect } from '../fixtures/fixtures';
+import { test as baseTest, expect } from '../fixtures/fixtures';
+import { attachNetworkCapture } from 'postman-playwright';
+
+const test = attachNetworkCapture(baseTest);
 
 test.describe('Login functionality', () => {
     test('user can login with valid credentials', async ({ loginPage, validCredentials }) => {

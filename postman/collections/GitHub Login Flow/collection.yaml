@@ -1,0 +1,10 @@
+$kind: collection
+id: github-login-flow-collection
+name: GitHub Login Flow
+description: |-
+  Captured API endpoints from the GitHub login flow, recorded via Playwright network capture.
+  Organized by host: github.com, api.github.com, and collector.github.com.
+order:
+  - github.com
+  - api.github.com
+  - collector.github.com

@@ -1,0 +1,7 @@
+$kind: http-request
+name: GET /u2f/login_fragment
+url: 'https://github.com/u2f/login_fragment'
+method: GET
+body:
+  type: text
+  content: ''
