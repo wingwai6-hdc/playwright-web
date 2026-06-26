@@ -22,6 +22,16 @@ jobs:
     - name: Check Mokapi health
       run: |    
           curl -v http://localhost:8080/health
+    - name: Debug environment variables
+      run: |
+        echo "TEST_USER_EMAIL is set: ${{ secrets.TEST_USER_EMAIL != '' }}"
+        echo "TEST_USER_EMAIL length: ${{ github.event_name == 'push' && 'hidden' || 'hidden' }}"
+        # 安全地打印变量（仅用于调试）
+        if [ -n "$TEST_USER_EMAIL" ]; then
+          echo "✅ TEST_USER_EMAIL is set in CI process"
+        else
+          echo "❌ TEST_USER_EMAIL is NOT set in CI process"
+        fi
     - name: Start backend server
       run: nohup node backend/index.js > backend.log 2>&1 &
           echo $! > backend.pid
