@@ -39,7 +39,10 @@ jobs:
         path: playwright-report/
         retention-days: 30
     - name: Run Postman Collection
-    - run: CI= true postman app test --command "npx playwright test"
+    - uses: postmanlabs/postman-cli-action@v1
+      with:
+        command: 'CI= true postman app test --command "npx playwright test'
+        api-key: ${{ secrets.POSTMAN_API_KEY }}
     - name: Stop Mokapi
       run: docker stop mokapi
     - name: Check backend logs
