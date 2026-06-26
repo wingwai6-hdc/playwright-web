@@ -39,7 +39,7 @@ jobs:
         path: playwright-report/
         retention-days: 30
     - name: Run Postman Collection
-    - uses: postmanlabs/postman-cli-action@v1
+      uses: postmanlabs/postman-cli-action@v1
       with:
         command: 'CI= true postman app test --command "npx playwright test'
         api-key: ${{ secrets.POSTMAN_API_KEY }}
