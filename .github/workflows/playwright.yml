@@ -43,7 +43,7 @@ jobs:
       env:
         POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
       with:
-        command: 'CI= true postman app test --command "npx playwright test'
+        command: 'postman app test --command "npx playwright test'
     - name: Stop Mokapi
       run: docker stop mokapi
     - name: Check backend logs
