@@ -33,6 +33,8 @@ jobs:
         else
           echo "❌ TEST_USER_EMAIL is NOT set in CI process"
         fi
+      env:
+          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
     - name: Start backend server
       run: nohup node backend/index.js > backend.log 2>&1 &
           echo $! > backend.pid
