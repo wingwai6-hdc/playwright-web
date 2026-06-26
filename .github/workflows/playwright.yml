@@ -40,9 +40,10 @@ jobs:
         retention-days: 30
     - name: Run Postman Collection
       uses: postmanlabs/postman-cli-action@v1
+      env:
+        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
       with:
         command: 'CI= true postman app test --command "npx playwright test'
-        api-key: ${{ secrets.POSTMAN_API_KEY }}
     - name: Stop Mokapi
       run: docker stop mokapi
     - name: Check backend logs
