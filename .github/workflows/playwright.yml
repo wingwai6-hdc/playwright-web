@@ -8,6 +8,9 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        shard: [ 1, 2 ]
     environment: QA
     steps:
     - uses: actions/checkout@v4
@@ -23,32 +26,20 @@ jobs:
     - name: Check Mokapi health
       run: |    
           curl -v http://localhost:8080/health
-    - name: Debug environment variables
-      run: |
-        echo "TEST_USER_EMAIL is set: ${{ secrets.TEST_USER_EMAIL != '' }}"
-        echo "TEST_USER_EMAIL length: ${{ github.event_name == 'push' && 'hidden' || 'hidden' }}"
-        # 安全地打印变量（仅用于调试）
-        if [ -n "$TEST_USER_EMAIL" ]; then
-          echo "✅ TEST_USER_EMAIL is set in CI process"
-        else
-          echo "❌ TEST_USER_EMAIL is NOT set in CI process"
-        fi
-      env:
-          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
     - name: Start backend server
       run: nohup node backend/index.js > backend.log 2>&1 &
           echo $! > backend.pid
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test login.spec.ts
+      run: npx playwright test login.spec.ts --shard=${{ matrix.shard }}/2
       env:
         TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
         TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: playwright-report
+        name: playwright-report-shard-${{ matrix.shard }}
         path: playwright-report/
         retention-days: 30
     - name: Run Postman Collection
