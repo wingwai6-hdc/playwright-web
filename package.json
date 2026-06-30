@@ -4,18 +4,20 @@
   "description": "Playwright with TypeScript Project",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:perf": "k6 run performance/load-test.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.9.3",
+    "k6": "^0.0.0",
     "kafkajs": "^2.2.4",
     "node-fetch": "^3.3.2",
     "postman-cli": "^1.0.0",
     "postman-playwright": "^1.1.1"
   },
   "dependencies": {
-    "dotenv": "^17.4.2",
-    "k6": "^0.0.0"
+    "@eklabdev/fix-swift-forge": "^1.1.0",
+    "dotenv": "^17.4.2"
   }
 }
