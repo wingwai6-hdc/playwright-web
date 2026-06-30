@@ -73,4 +73,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: k6-results
-          path: k6-results.json
+          path: ./k6-results.json
