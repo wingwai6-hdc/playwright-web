@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
-        node-version: lts/*
+        node-version: '24.x'
     - name: Install dependencies
       run: npm ci
     - name: Start Mokapi
@@ -63,6 +63,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
       - name: Run K6 tests
         uses: grafana/k6-action@v0.3.1
         with:
