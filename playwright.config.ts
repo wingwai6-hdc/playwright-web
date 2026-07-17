@@ -5,7 +5,9 @@ import { defineConfig, devices } from '@playwright/test';
  * https://github.com/motdotla/dotenv
  */
 
+// @ts-ignore
 import dotenv from 'dotenv';
+// @ts-ignore
 import path from 'path';
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 

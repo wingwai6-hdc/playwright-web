@@ -9,12 +9,13 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
-    "@types/node": "^25.9.3",
+    "@types/node": "^25.9.5",
     "k6": "^0.0.0",
     "kafkajs": "^2.2.4",
     "node-fetch": "^3.3.2",
     "postman-cli": "^1.0.0",
-    "postman-playwright": "^1.1.1"
+    "postman-playwright": "^1.1.1",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "@eklabdev/fix-swift-forge": "^1.1.0",

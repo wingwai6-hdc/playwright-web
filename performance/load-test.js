@@ -1,20 +1,40 @@
 import http from 'k6/http';
+import { browser } from 'k6/browser';
 import { check, sleep } from 'k6';
 import { Rate } from 'k6/metrics';
 
-const errorRate = new Rate('errors');
+export const errorRate = new Rate('errors');
 
 export const options = {
-  stages: [
-    { duration: '10s', target: 10 },  // ramp up to 50 VUs
-    { duration: '10s', target: 10 },   // hold at 50 VUs
-    { duration: '5s', target: 0 },   // ramp down
-  ],
-  thresholds: {
-    http_req_duration: ['p(95)<500'], // 95% of requests under 500ms
-    http_req_failed: ['rate<0.01'],   // less than 1% failures
-    errors: ['rate<0.05'],            // custom error rate under 5%
+  scenarios: {
+    api_load: {
+      executor: 'ramping-vus',
+      stages: [
+        { duration: '10s', target: 10 },
+        { duration: '10s', target: 10 },
+        { duration: '5s', target: 0 },
+      ],
+      gracefulRampDown: '5s',
+      tags: { test_type: 'api' }
+    },
+    browser_load: {
+      executor: 'constant-vus',
+      vus: 3,                       // 采样用户数
+      duration: '10s',
+      tags: { test_type: 'browser' },
+      exec: 'browserTest',          // 指定此场景要执行的函数
+      options: {
+        browser: {
+          type: 'chromium',         // 使用Chromium浏览器
+        },
+      },
+    }
   },
+  thresholds: {
+    http_req_duration: ['p(95)<500'],
+    http_req_failed: ['rate<0.01'],
+    errors: ['rate<0.05']
+  }
 };
 
 export default function () {
@@ -27,4 +47,15 @@ export default function () {
 
   errorRate.add(!ok);
   sleep(1);
+}
+export async function browserTest() {
+  const page = await browser.newPage();
+
+  try {
+    await http.get('https://test.k6.io/');
+   console.log('Opening https://test.k6.io/')
+  }
+  finally {
+    await page.close();
+  }
 }
