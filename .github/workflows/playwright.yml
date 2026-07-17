@@ -63,6 +63,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: grafana/setup-k6-action@v1
+        with:
+          k6-version: 'latest'
+          browser: true
       - uses: actions/setup-node@v4
         with:
           node-version: '24.x'
