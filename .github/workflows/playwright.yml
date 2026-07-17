@@ -71,7 +71,7 @@ jobs:
         with:
           node-version: '24.x'
       - name: Run K6 tests
-        uses: grafana/k6-action@v0.3.1
+        uses: grafana/run-k6-action@v1
         with:
           filename: performance/load-test.js
       - uses: actions/upload-artifact@v4
