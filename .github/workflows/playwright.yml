@@ -66,6 +66,7 @@ jobs:
       - uses: grafana/setup-k6-action@v1
         with:
           browser: true
+      - uses: browser-actions/setup-chromium@v1
       - uses: actions/setup-node@v4
         with:
           node-version: '24.x'
