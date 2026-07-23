@@ -19,13 +19,13 @@ export const options = {
     },
     browser_load: {
       executor: 'constant-vus',
-      vus: 3,                       // 采样用户数
+      vus: 3,
       duration: '10s',
       tags: { test_type: 'browser' },
-      exec: 'browserTest',          // 指定此场景要执行的函数
+      exec: 'browserTest',
       options: {
         browser: {
-          type: 'chromium',         // 使用Chromium浏览器
+          type: 'chromium',
         },
       },
     }
